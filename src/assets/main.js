@@ -1,6 +1,7 @@
 const API = 'https://anime-db.p.rapidapi.com/anime?page=1&size=16&sortBy=ranking&sortOrder=asc';
 
 const content = null || document.getElementById('content');
+const errorContent = null || document.getElementById('error');
 
 const options = {
 	method: 'GET',
@@ -40,7 +41,15 @@ async function fetchData(urlApi) {
                 content.innerHTML = view;
 
     } catch (error) {
-        console.log(error)
+        const viewError = `
+            <p class="text-white text-4xl font-bold">
+                Lo siento, pero por el momento la API no está disponible. Estamos trabajando arduamente para solucionar este inconveniente y restablecer el servicio lo antes posible. Agradecemos tu comprensión y paciencia. Si tienes alguna pregunta o necesitas asistencia adicional, no dudes en contactarnos. Lamentamos cualquier inconveniente causado y esperamos poder brindarte un servicio completo muy pronto.
+            </p>`;
+
+        
+        errorContent.innerHTML = viewError;
+
+        errorContent.style.display = "block";
     }
 })();
 
